@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROSE BEAUTY PARLOUR - Neon Glam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* === GLOBAL STYLES (SQUID GAME THEME) === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(255, 0, 85, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 85, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: gridScroll 60s linear infinite;
+        }
+
+        @keyframes gridScroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 30px 30px; }
+        }
+
+        /* === HEADER (GLOWING 3D ROSE) === */
+        .parlour-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            position: relative;
+            background: rgba(10, 10, 10, 0.7);
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #ff0055;
+            box-shadow: 0 0 20px rgba(255, 0, 85, 0.3);
+        }
+
+        .parlour-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            color: #fff;
+            text-shadow: 0 0 10px #ff0055, 0 0 20px #ff0055;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            letter-spacing: 2px;
+        }
+
+        .tagline {
+            font-style: italic;
+            color: #ff6b9e;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px #ff0055;
+        }
+
+        /* === 3D GLOWING ROSE (NEON EFFECT) === */
+        .rose-3d {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            filter: drop-shadow(0 0 15px #ff0055);
+            animation: neonPulse 2s infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            0% { filter: drop-shadow(0 0 10px #ff0055); opacity: 0.9; }
+            100% { filter: drop-shadow(0 0 25px #ff0055); opacity: 1; }
+        }
+
+        /* === SERVICES GRID (GLOWING CARDS) === */
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 10px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 0, 85, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(255, 0, 85, 0.1);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff0055, #ff6b9e, #ff0055);
+            z-index: -2;
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(255, 0, 85, 0.4);
+        }
+
+        .service-card:hover::before {
+            opacity: 0.7;
+            animation: glowBorder 2s infinite alternate;
+        }
+
+        @keyframes glowBorder {
+            0% { filter: blur(5px); opacity: 0.7; }
+            100% { filter: blur(8px); opacity: 0.9; }
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #ff6b9e;
+            text-shadow: 0 0 10px #ff0055;
+        }
+
+        .service-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .service-card p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* === PARTICLE EFFECT (ON HOVER) === */
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #ff0055;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0;
+            animation: floatParticle 2s ease-out forwards;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translate(0, 0); opacity: 1; }
+            100% { transform: translate(random(100) - 50px, random(100) - 50px); opacity: 0; }
+        }
+
+        /* === FOOTER (NEON GLOW) === */
+        footer {
+            background: rgba(10, 10, 10, 0.9);
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid #ff0055;
+            box-shadow: 0 -5px 20px rgba(255, 0, 85, 0.2);
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px #ff0055;
+        }
+
+        footer p {
+            color: #ff6b9e;
+            margin-bottom: 0.5rem;
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 768px) {
+            .parlour-header h1 {
+                font-size: 2.5rem;
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .rose-3d {
+                width: 40px;
+                height: 40px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="parlour-header">
+        <h1>
+            ROSE 
+            <span class="rose-3d">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="60" height="60">
+                    <defs>
+                        <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ff0055;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#ff6b9e;stop-opacity:1" />
+                        </linearGradient>
+                        <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
+                            <feGaussianBlur stdDeviation="4" result="blur" />
+                            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                        </filter>
+                    </defs>
+                    <path fill="url(#neonGradient)" filter="url(#neonGlow)" d="M50,15 C60,5 80,5 85,20 C90,35 75,45 65,50 C55,55 45,55 35,50 C25,45 10,35 15,20 C20,5 40,5 50,15 Z"/>
+                    <path fill="#fff" d="M50,60 C45,65 45,70 50,75 C55,80 60,80 65,75 C70,70 70,65 65,60 C60,55 55,55 50,60 Z"/>
+                </svg>
+            </span>
+            BEAUTY PARLOUR
+        </h1>
+        <p class="tagline">Where beauty meets neon glam</p>
+    </header>
+
+    <div class="services-container">
+        <h2 style="text-align: center; font-family: 'Orbitron', sans-serif; color: #fff; margin-bottom: 1rem; text-shadow: 0 0 10px #ff0055;">OUR GLOWING SERVICES</h2>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto; color: #ff6b9e; text-shadow: 0 0 5px #ff0055;">Step into a world of neon luxury and transformation</p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">💆‍♀️</div>
+                <h3>Neon Facials</h3>
+                <p>Glowing skin treatments with LED light therapy.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">💇‍♀️</div>
+                <h3>Hair Glow-Up</h3>
+                <p>Vibrant colors & sleek styles under neon lights.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">💅</div>
+                <h3>Neon Nails</h3>
+                <p>UV-reactive nail art that glows in the dark.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>Bridal Glow</h3>
+                <p>Make your wedding day shine with our neon glam.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🧖‍♀️</div>
+                <h3>Glow Spa</h3>
+                <p>Relax under neon lights with our signature treatments.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">👁️</div>
+                <h3>Neon Makeup</h3>
+                <p>Bold, glowing looks for any occasion.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">ROSE BEAUTY PARLOUR</div>
+        <p>123 Neon Street, Glow City</p>
+        <p>☎ (555) GLOW-NOW</p>
+        <p>© 2023 All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // === PARTICLE EFFECT ON CARD HOVER ===
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function(e) {
+                createParticles(e, this);
+            });
+        });
+
+        function createParticles(e, element) {
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Position particles around cursor
+                const x = e.clientX - element.getBoundingClientRect().left;
+                const y = e.clientY - element.getBoundingClientRect().top;
+                
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                
+                // Random glow color
+                const colors = ['#ff0055', '#ff6b9e', '#ff99bb', '#ffffff'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Random size
+                const size = Math.random() * 6 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random animation
+                particle.style.animationDuration = `${Math.random() * 2 + 1}s`;
+                
+                element.appendChild(particle);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    particle.remove();
+                }, 2000);
+            }
+        }
+
+        // === FLOATING ROSE ANIMATION ===
+        const rose3d = document.querySelector('.rose-3d');
+        let floatDirection = 1;
+        
+        function floatRose() {
+            const currentTransform = window.getComputedStyle(rose3d).getPropertyValue('transform');
+            const currentY = currentTransform === 'none' ? 0 : parseFloat(currentTransform.split(',')[5] || 0);
+            
+            if (Math.abs(currentY) > 5) {
+                floatDirection *= -1;
+            }
+            
+            const newY = currentY + (0.1 * floatDirection);
+            rose3d.style.transform = `translateY(${newY}px)`;
+            
+            requestAnimationFrame(floatRose);
+        }
+        
+        floatRose();
+    </script>
+</body>
+</html>
