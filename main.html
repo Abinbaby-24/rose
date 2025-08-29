@@ -3,349 +3,506 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rose Beauty Parlour</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>ROSE BEAUTY PARLOUR - Luxury Beauty Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
-        /* CSS will be placed here */
         :root {
-            --primary: #ff85a2;
-            --secondary: #ffd6e0;
-            --accent: #ff2e63;
-            --light: #fff6f9;
-            --dark: #3a3a3a;
+            --primary: #8A4FFF; /* Vibrant purple */
+            --secondary: #FF6B8B; /* Soft pink */
+            --dark: #121212; /* Deep dark background */
+            --light: #F8F5F2; /* Creamy white */
+            --accent: #FFD166; /* Golden yellow */
+            --text: #333333;
+            --text-light: #777777;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --section-padding: 120px 5%;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--light);
-            color: var(--dark);
+            background: var(--dark);
+            color: var(--light);
+            font-weight: 400;
+            line-height: 1.8;
             overflow-x: hidden;
-            position: relative;
         }
 
-        .rose-petal {
-            position: absolute;
-            background-size: contain;
-            background-repeat: no-repeat;
-            z-index: -1;
-            opacity: 0.7;
-            pointer-events: none;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 10px;
         }
 
+        /* Header with Glass Morphism */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            padding: 1.5rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 15px 5%;
+            background: rgba(18, 18, 18, 0.95);
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-family: 'Playfair Display', serif;
+            color: var(--light);
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: var(--transition);
         }
 
-        .tagline {
-            font-size: 1rem;
-            opacity: 0.9;
+        header.scrolled .logo {
+            font-size: 1.6rem;
         }
 
         nav {
             display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-        }
-
-        nav a:hover, nav a.active {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .hero {
-            padding: 2rem 1.5rem;
-            text-align: center;
-            background: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
-            position: relative;
-            color: white;
-            height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
         }
 
-        .hero::before {
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            margin-left: 30px;
+            position: relative;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        nav a::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: -5px;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu for Mobile */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background: var(--light);
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        section {
+            min-height: 100vh;
+            padding: var(--section-padding);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
             position: relative;
-            z-index: 1;
-            max-width: 800px;
+            z-index: 2;
         }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.3;
         }
 
-        .hero p {
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            color: var(--light);
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: var(--light);
+            text-align: center;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 1.4rem;
+            color: var(--light);
+            margin-bottom: 15px;
+        }
+
+        p {
             font-size: 1.2rem;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
         }
 
+        /* Buttons */
         .btn {
             display: inline-block;
-            padding: 0.8rem 2rem;
-            background-color: var(--accent);
+            padding: 15px 35px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            margin: 15px;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 46, 99, 0.3);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 46, 99, 0.4);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid white;
-            margin-left: 1rem;
-        }
-
-        .btn-outline:hover {
-            background-color: white;
-            color: var(--accent);
-        }
-
-        section {
-            padding: 3rem 1.5rem;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-            color: var(--accent);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            margin: 0.5rem auto 0;
-            border-radius: 2px;
-        }
-
-        .services {
-            background-color: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(138, 79, 255, 0.3);
             position: relative;
             overflow: hidden;
         }
 
-        .services:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
         }
 
-        .services::before {
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(138, 79, 255, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--light);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .service-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(138, 79, 255, 0.1), transparent);
+            opacity: 0;
+            transition: var(--transition);
         }
 
-        .services h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
+        .service-card:hover::before {
+            opacity: 1;
         }
 
-        .services p {
-            margin-bottom: 1.5rem;
-            color: #666;
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(138, 79, 255, 0.3);
         }
 
-        .services-grid {
+        .service-img {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-img {
+            transform: scale(1.05);
+        }
+
+        .service-content {
+            padding: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-content h3 {
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+            color: var(--light);
+        }
+
+        .service-content p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0;
+        }
+
+        /* About Section */
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-list {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
         }
 
-        .wave {
+        .feature-item {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-left: 4px solid var(--accent);
+        }
+
+        .feature-item i {
+            color: var(--accent);
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+
+        .feature-item strong {
+            font-weight: 600;
+            color: var(--light);
+        }
+
+        /* Mission Box */
+        .mission-box {
+            background: linear-gradient(45deg, rgba(138, 79, 255, 0.1), rgba(255, 107, 139, 0.1));
+            padding: 40px;
+            border-radius: 20px;
+            margin: 60px 0;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
-            height: 150px;
             overflow: hidden;
         }
 
-        .wave::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background-repeat: repeat;
-            height: 10px;
-            background-size: 20px 20px;
-            background-image: radial-gradient(circle at 10px -5px, transparent 12px, var(--light) 13px);
-        }
-
-        .wave::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background-repeat: repeat;
-            height: 15px;
-            background-size: 40px 20px;
-            background-image: radial-gradient(circle at 10px 15px, var(--light) 12px, transparent 13px);
-        }
-
-        .appointment {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            padding: 3rem 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .appointment::before {
+        .mission-box::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
-            opacity: 0.1;
-            z-index: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            animation: rotate 15s linear infinite;
+            z-index: -1;
         }
 
-        .appointment-content {
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .mission-box h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
             position: relative;
-            z-index: 1;
-            max-width: 600px;
-            margin: 0 auto;
+            display: inline-block;
         }
 
-        .appointment .section-title {
-            color: white;
+        .mission-box h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
         }
 
-        .appointment .section-title::after {
-            background: white;
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            opacity: 0.1;
+            filter: blur(30px);
+            z-index: -1;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
+        .floating-1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: -100px;
+            animation: float 8s ease-in-out infinite;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
+        .floating-2 {
+            width: 200px;
+            height: 200px;
+            bottom: 20%;
+            right: -50px;
+            animation: float 6s ease-in-out infinite reverse;
         }
 
-        .form-control {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border-radius: 8px;
-            border: none;
-            font-size: 1rem;
-            background-color: rgba(255, 255, 255, 0.9);
-            transition: all 0.3s ease;
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
         }
 
-        .form-control:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
-            background-color: white;
-        }
-
-        textarea.form-control {
-            min-height: 120px;
-            resize: vertical;
-        }
-
+        /* Footer */
         footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 3rem 1.5rem;
+            background: linear-gradient(to bottom, rgba(18, 18, 18, 0), rgba(138, 79, 255, 0.1));
+            padding: 60px 5% 30px;
             text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: inline-block;
         }
 
-        .footer-about p {
-            margin-bottom: 1.5rem;
-            opacity: 0.8;
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 30px;
         }
 
         .social-links a {
@@ -355,385 +512,409 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            margin: 0 10px;
+            transition: var(--transition);
         }
 
         .social-links a:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .footer-links h3, .footer-contact h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
-            color: var(--primary);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .contact-icon {
-            margin-right: 1rem;
-            color: var(--primary);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            transform: translateY(-5px);
         }
 
         .copyright {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.7;
+            color: var(--text-light);
             font-size: 0.9rem;
         }
 
-        /* Animation classes */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        /* WhatsApp Section */
+        .whatsapp-section {
+            text-align: center;
+            padding: 60px 5%;
         }
-
-        @keyframes petalFall {
-            0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(calc(100vh + 100px)) rotate(360deg); opacity: 0; }
+        
+        .whatsapp-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
-
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
+        
+        .whatsapp-icon {
+            font-size: 5rem;
+            color: #25D366;
+            margin-bottom: 20px;
+            display: block;
         }
-
-        /* Mobile menu */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 35px;
+            background: #25D366;
             color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 30px;
+            font-size: 1.2rem;
+            gap: 10px;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+        }
+        
+        .contact-info {
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.8);
         }
 
-        /* Responsive styles */
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 3.2rem;
+            }
+            
+            h2 {
+                font-size: 2.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
-            nav {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background-color: rgba(0, 0, 0, 0.2);
-                border-radius: 10px;
-                padding: 1rem;
-            }
-
-            nav.active {
-                display: flex;
-            }
-
-            .menu-toggle {
+            .hamburger {
                 display: block;
-                position: absolute;
-                top: 1.5rem;
-                right: 1.5rem;
             }
-
-            .hero h1 {
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(18, 18, 18, 0.95);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: var(--transition);
+                z-index: 1000;
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            nav a {
+                margin: 15px 0;
+                font-size: 1.3rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
                 font-size: 2rem;
             }
-
+            
             .btn {
-                display: block;
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-container {
+                padding: 30px 20px;
+            }
+            
+            .mission-box {
+                padding: 30px 20px;
+            }
+            
+            section {
+                padding: 100px 5%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .btn-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
                 width: 100%;
-                margin-bottom: 1rem;
+                max-width: 250px;
+                margin: 10px 0;
             }
-
-            .btn-outline {
-                margin-left: 0;
+            
+            .whatsapp-icon {
+                font-size: 4rem;
             }
-        }
-
-        @media (min-width: 768px) {
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-content {
-                grid-template-columns: repeat(3, 1fr);
-                text-align: left;
-            }
-
-            .social-links {
-                justify-content: flex-start;
-            }
-        }
-
-        @media (min-width: 992px) {
-            .services-grid {
-                grid-template-columns: repeat(3, 1fr);
+            
+            .whatsapp-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Rose petals background -->
-    <div id="petals-container"></div>
+    <!-- Floating Background Elements -->
+    <div class="floating-element floating-1"></div>
+    <div class="floating-element floating-2"></div>
 
-    <header>
-        <button class="menu-toggle" id="menuToggle">
-            <i class="fas fa-bars"></i>
-        </button>
-        <div class="logo">Rose Beauty Parlour</div>
-        <div class="tagline">Where Beauty Meets Elegance</div>
-        <nav id="mainNav">
-            <a href="#home" class="active">Home</a>
+    <header id="header">
+        <a href="#" class="logo">ROSE BEAUTY PARLOUR</a>
+        
+        <nav id="nav">
+            <a href="#home">Home</a>
             <a href="#services">Services</a>
-            <a href="#appointment">Book Now</a>
+            <a href="#about">About</a>
             <a href="#contact">Contact</a>
         </nav>
+        
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </header>
 
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Discover Your Natural Beauty</h1>
-            <p>Experience premium beauty treatments tailored just for you by our expert stylists and aestheticians.</p>
-            <div>
-                <a href="#appointment" class="btn">Book Appointment</a>
-                <a href="#services" class="btn btn-outline">Our Services</a>
+    <section id="home" class="hero">
+        <div class="hero-content animate__animated animate__fadeIn">
+            <h1>Elegant Beauty Services</h1>
+            <p>Experience professional beauty treatments with our expert beauticians. Book your personalized session today and enjoy our premium salon experience.</p>
+            
+            <div class="btn-container">
+                <a href="#services" class="btn">Explore Services</a>
+                <a href="#contact" class="btn btn-outline">Book Now</a>
             </div>
         </div>
     </section>
-
-    <div class="wave"></div>
 
     <section id="services">
-        <h2 class="section-title">Our Services</h2>
-        <div class="services-grid">
-            <div class="services float-animation">
-                <h3>Hair Styling</h3>
-                <p>Professional haircuts, coloring, and styling to bring out your best look.</p>
-            </div>
-            <div class="services float-animation" style="animation-delay: 0.2s;">
-                <h3>Manicure & Pedicure</h3>
-                <p>Luxurious nail care treatments with premium products for healthy nails.</p>
-            </div>
-            <div class="services float-animation" style="animation-delay: 0.4s;">
-                <h3>Facial Treatments</h3>
-                <p>Rejuvenating facials customized for your skin type and concerns.</p>
-            </div>
-            <div class="services float-animation" style="animation-delay: 0.6s;">
-                <h3>Waxing</h3>
-                <p>Professional hair removal services for smooth, silky skin.</p>
-            </div>
-            <div class="services float-animation" style="animation-delay: 0.8s;">
-                <h3>Makeup Artistry</h3>
-                <p>Flawless makeup application for any occasion by our talented artists.</p>
-            </div>
-            <div class="services float-animation" style="animation-delay: 1s;">
-                <h3>Massage Therapy</h3>
-                <p>Relaxing and therapeutic massages to relieve stress and tension.</p>
+        <div class="container">
+            <h2 class="animate__animated animate__fadeInUp">Our Premium Services</h2>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">We offer a wide range of beauty treatments tailored to your needs, delivered by certified professionals with premium products.</p>
+            
+            <div class="services-grid">
+                <div class="service-card animate__animated animate__fadeInUp" onclick="redirectToService('Facial & Skincare', 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Facial" class="service-img">
+                    <div class="service-content">
+                        <h3>Facial & Skincare</h3>
+                        <p>Customized facials for all skin types using premium organic products for radiant, healthy skin.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card animate__animated animate__fadeInUp" onclick="redirectToService('Manicure & Pedicure', 'pedicure and manicure.jpg')">
+                    <img src="pedicure and manicure.jpg" alt="Manicure" class="service-img">
+                    <div class="service-content">
+                        <h3>Manicure & Pedicure</h3>
+                        <p>Luxury nail treatments with gel polish options and relaxing hand/foot massages.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card animate__animated animate__fadeInUp" onclick="redirectToService('Makeup & Hairstyling', 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+                    <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Makeup" class="service-img">
+                    <div class="service-content">
+                        <h3>Makeup & Hairstyling</h3>
+                        <p>From casual to bridal looks, our artists create flawless makeup for any occasion.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card animate__animated animate__fadeInUp" onclick="redirectToService('Spa & Massage', 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Massage" class="service-img">
+                    <div class="service-content">
+                        <h3>Spa & Massage</h3>
+                        <p>Relaxing body treatments with aromatherapy oils to relieve stress and tension.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card animate__animated animate__fadeInUp" onclick="redirectToService('Hair Care', 'https://images.unsplash.com/photo-1519735777090-ec97162dc266?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+                    <img src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Hair" class="service-img">
+                    <div class="service-content">
+                        <h3>Hair Care</h3>
+                        <p>Professional cuts, coloring, treatments and styling using premium hair products.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card animate__animated animate__fadeInUp" onclick="redirectToService('Waxing', 'waxing.jpg')">
+                    <img src="waxing.jpg" alt="Waxing" class="service-img">
+                    <div class="service-content">
+                        <h3>Waxing</h3>
+                        <p>Professional hair removal services for smooth, flawless skin with minimal discomfort.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card animate__animated animate__fadeInUp" onclick="redirectToService('Threading', 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+                    <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Threading" class="service-img">
+                    <div class="service-content">
+                        <h3>Threading</h3>
+                        <p>Precision hair removal technique for perfect brows and facial hair shaping.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card animate__animated animate__fadeInUp" onclick="redirectToService('Bridal Packages', 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Bridal Package" class="service-img">
+                    <div class="service-content">
+                        <h3>Bridal Packages</h3>
+                        <p>Complete bridal makeover packages including trials, skincare and day-of services.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="appointment" id="appointment">
-        <div class="appointment-content">
-            <h2 class="section-title">Book an Appointment</h2>
-            <form id="appointmentForm">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" class="form-control" required>
+    <section id="about">
+        <div class="about-container">
+            <h2 class="animate__animated animate__fadeInUp">About ROSE BEAUTY PARLOUR</h2>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">Welcome to ROSE BEAUTY PARLOUR, your ultimate destination for luxury beauty services. We believe that self-care should be simple, convenient, and exceptional, which is why we've created a seamless platform that connects you with top-rated beauty professionals.</p>
+
+            <h3 class="animate__animated animate__fadeInUp animate__delay-2s">Why Choose ROSE BEAUTY PARLOUR?</h3>
+            <p class="animate__animated animate__fadeInUp animate__delay-2s">ROSE BEAUTY PARLOUR is designed to elevate your beauty experience with premium features that prioritize quality, convenience, and personalized care:</p>
+            
+            <div class="feature-list">
+                <div class="feature-item animate__animated animate__fadeInLeft">
+                    <i class="fas fa-spa"></i> <strong>Certified Professionals</strong> – All our beauticians are vetted, certified and trained in the latest techniques.
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" class="form-control" required>
+                <div class="feature-item animate__animated animate__fadeInRight">
+                    <i class="fas fa-star"></i> <strong>Premium Products</strong> – We use only high-quality, professional-grade products from trusted brands.
                 </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" class="form-control" required>
+                <div class="feature-item animate__animated animate__fadeInLeft">
+                    <i class="fas fa-home"></i> <strong>At Your Convenience</strong> – Enjoy salon-quality services at your preferred time.
                 </div>
-                <div class="form-group">
-                    <label for="service">Service</label>
-                    <select id="service" class="form-control" required>
-                        <option value="">Select a service</option>
-                        <option value="hair">Hair Styling</option>
-                        <option value="nails">Manicure/Pedicure</option>
-                        <option value="facial">Facial Treatment</option>
-                        <option value="waxing">Waxing</option>
-                        <option value="makeup">Makeup Artistry</option>
-                        <option value="massage">Massage Therapy</option>
-                    </select>
+                <div class="feature-item animate__animated animate__fadeInRight">
+                    <i class="fas fa-shield-alt"></i> <strong>Hygienic Practices</strong> – Strict sanitation protocols with disposable tools and sterilized equipment.
                 </div>
-                <div class="form-group">
-                    <label for="date">Preferred Date</label>
-                    <input type="date" id="date" class="form-control" required>
+                <div class="feature-item animate__animated animate__fadeInLeft">
+                    <i class="fas fa-calendar-check"></i> <strong>Flexible Scheduling</strong> – Book same-day or in advance with our easy online scheduling system.
                 </div>
-                <div class="form-group">
-                    <label for="message">Special Requests</label>
-                    <textarea id="message" class="form-control"></textarea>
+                <div class="feature-item animate__animated animate__fadeInRight">
+                    <i class="fas fa-gem"></i> <strong>Membership Benefits</strong> – Join our loyalty program for exclusive discounts and priority booking.
                 </div>
-                <button type="submit" class="btn">Book Now</button>
-            </form>
+            </div>
+
+            <div class="mission-box animate__animated animate__fadeIn">
+                <h3>Our Mission</h3>
+                <p>ROSE BEAUTY PARLOUR is dedicated to revolutionizing the beauty industry by combining technology with personalized care. Our goal is to provide a seamless, luxurious beauty experience that saves you time while delivering exceptional results.</p>
+                <p>We're committed to empowering both clients and beauty professionals through our innovative platform that makes premium beauty services accessible to everyone.</p>
+            </div>
         </div>
     </section>
 
-    <footer id="contact">
-        <div class="footer-content">
-            <div class="footer-about">
-                <div class="footer-logo">Rose Beauty Parlour</div>
-                <p>Providing exceptional beauty services with a personal touch. Our mission is to enhance your natural beauty and boost your confidence.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                </div>
+    <section id="contact" class="whatsapp-section">
+        <h2 class="animate__animated animate__fadeInUp">Contact Us</h2>
+        <p class="animate__animated animate__fadeInUp animate__delay-1s">Get in touch with us via WhatsApp for bookings and inquiries</p>
+        
+        <div class="whatsapp-container animate__animated animate__fadeInUp animate__delay-2s">
+            <i class="fab fa-whatsapp whatsapp-icon"></i>
+            <h3>Message Us on WhatsApp</h3>
+            <p>Click the button below to start a conversation with us directly on WhatsApp. We're here to answer your questions and help you book your preferred service.</p>
+            
+            <a href="https://wa.me/919539229843?text=Hello%20ROSE%20BEAUTY%20PARLOUR!%20I%20would%20like%20to%20inquire%20about%20your%20services." class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+            
+            <div class="contact-info">
+                <p>You can also reach us at: <strong>+91 9539229843</strong></p>
+                <p>Business Hours: 9:00 AM - 8:00 PM (Monday-Saturday)</p>
             </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#appointment">Book Appointment</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h3>Contact Us</h3>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <p>123 Beauty Avenue, Vaduthala, Kochi 682023</p>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone-alt"></i>
-                    </div>
-                    <p>(555) 123-4567</p>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <p>info@rosebeautyparlour.com</p>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <p>Mon-Fri: 9am-7pm<br>Sat: 9am-5pm<br>Sun: 10am-4pm</p>
-                </div>
-            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">ROSE BEAUTY PARLOUR</div>
+        <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
         </div>
         <div class="copyright">
-            &copy; 2023 Rose Beauty Parlour. All rights reserved.
+            &copy; ROSE BEAUTY PARLOUR. All rights reserved.
         </div>
     </footer>
 
     <script>
-        // Rose petals animation
-        function createPetals() {
-            const container = document.getElementById('petals-container');
-            const petalCount = 15;
-            
-            for (let i = 0; i < petalCount; i++) {
-                const petal = document.createElement('div');
-                petal.className = 'rose-petal';
-                
-                // Random petal size
-                const size = Math.random() * 20 + 10;
-                petal.style.width = `${size}px`;
-                petal.style.height = `${size}px`;
-                
-                // Random petal image (different shades of rose petals)
-                const petalImages = [
-                    'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><path d=\'M50,10 C60,20 70,25 80,30 C90,35 95,40 90,50 C85,60 80,65 50,90 C20,65 15,60 10,50 C5,40 10,35 20,30 C30,25 40,20 50,10 Z\' fill=\'%23ff85a2\'/></svg>")',
-                    'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><path d=\'M50,10 C60,20 70,25 80,30 C90,35 95,40 90,50 C85,60 80,65 50,90 C20,65 15,60 10,50 C5,40 10,35 20,30 C30,25 40,20 50,10 Z\' fill=\'%23ff2e63\'/></svg>")',
-                    'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><path d=\'M50,10 C60,20 70,25 80,30 C90,35 95,40 90,50 C85,60 80,65 50,90 C20,65 15,60 10,50 C5,40 10,35 20,30 C30,25 40,20 50,10 Z\' fill=\'%23ffd6e0\'/></svg>")'
-                ];
-                petal.style.backgroundImage = petalImages[Math.floor(Math.random() * petalImages.length)];
-                
-                // Random position
-                petal.style.left = `${Math.random() * 100}vw`;
-                petal.style.top = `-${size}px`;
-                
-                // Random animation duration and delay
-                const duration = Math.random() * 10 + 10;
-                const delay = Math.random() * 5;
-                petal.style.animation = `petalFall ${duration}s linear ${delay}s infinite`;
-                
-                container.appendChild(petal);
-            }
+        // Function to redirect to service details page
+        function redirectToService(serviceName, serviceImage) {
+            localStorage.setItem('selectedService', serviceName);
+            localStorage.setItem('serviceImage', serviceImage);
+            window.location.href = 'service.html';
         }
 
-        // Mobile menu toggle
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            document.getElementById('mainNav').classList.toggle('active');
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+        
+        hamburger.addEventListener('click', function() {
+            nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Simple animation on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.service-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
                 });
-                
-                // Close mobile menu if open
-                document.getElementById('mainNav').classList.remove('active');
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
             });
         });
-
-        // Form submission
-        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                service: document.getElementById('service').value,
-                date: document.getElementById('date').value,
-                message: document.getElementById('message').value
-            };
-            
-            // Here you would typically send this data to your server
-            // For demonstration, we'll just show an alert and log to console
-            console.log('Appointment form submitted:', formData);
-            
-            alert('Thank you for your appointment request! We will contact you shortly to confirm your booking.');
-            
-            // Reset form
-            this.reset();
-        });
-
-        // Initialize petals when page loads
-        window.addEventListener('load', createPetals);
     </script>
 </body>
 </html>
